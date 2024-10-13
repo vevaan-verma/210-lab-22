@@ -217,7 +217,7 @@ public:
 
 		while (current) {
 
-			cout << current->data << " ";
+			cout << current->data << endl;
 			current = current->next;
 
 		}
@@ -233,7 +233,7 @@ public:
 
 		while (current) {
 
-			cout << current->data << " ";
+			cout << current->data << endl;
 			current = current->prev;
 
 		}
@@ -266,13 +266,27 @@ int main() {
 	for (int i = 0; i < size; ++i)
 		list.push_back(rand() % (MAX_NR - MIN_NR + 1) + MIN_NR);
 
-	cout << "List forward: ";
+	cout << "List:" << endl;
 	list.print();
-	cout << "List backward: ";
-	list.print_reverse();
-	cout << "Deleting list, then trying to print.\n";
-	list.~DoublyLinkedList();
-	cout << "List forward: ";
+
+	cout << "Removing the third node..." << endl;
+	list.delete_pos(2);
+	cout << "New List:" << endl;
+	list.print();
+
+	cout << "Removing the first node..." << endl;
+	list.pop_front();
+	cout << "New List:" << endl;
+	list.print();
+
+	cout << "Removing the last node..." << endl;
+	list.pop_back();
+	cout << "New List:" << endl;
+	list.print();
+
+	cout << "Deleting the value 99..." << endl;
+	list.delete_val(99);
+	cout << "New List:" << endl;
 	list.print();
 
 	return 0;
