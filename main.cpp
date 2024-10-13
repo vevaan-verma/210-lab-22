@@ -130,6 +130,46 @@ public:
 
 	}
 
+	// delete_pos() removes a node at a specific position in the list
+	// arguments: int - the position of the node to delete
+	// returns: void
+	void delete_pos(int position) {
+
+		if (position < 0) {
+
+			cout << "Position must be >= 0." << endl;
+			return;
+
+		}
+
+		if (!head) return; // empty list
+
+		Node* temp = head; // start at the head
+
+		for (int i = 0; i < position && temp; i++) // move to the position to delete
+			temp = temp->next;
+
+		if (!temp) {
+
+			cout << "Position exceeds list size." << endl;
+			return;
+
+		}
+
+		if (temp->prev)
+			temp->prev->next = temp->next; // set the previous node's next to the node after the one being deleted
+		else
+			head = temp->next; // deleting the head, so move head to next node
+
+		if (temp->next)
+			temp->next->prev = temp->prev; // set the next node's previous to the node before the one being deleted
+		else
+			tail = temp->prev; // deleting the tail, so move tail to previous node
+
+		delete temp; // delete the node
+
+	}
+
 	void print() {
 
 		Node* current = head;
