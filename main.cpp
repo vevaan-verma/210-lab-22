@@ -106,7 +106,7 @@ public:
 
 	}
 
-	void delete_node(int value) {
+	void delete_val(int value) {
 
 		if (!head) return; // Empty list
 		Node* temp = head;
@@ -167,6 +167,46 @@ public:
 			tail = temp->prev; // deleting the tail, so move tail to previous node
 
 		delete temp; // delete the node
+
+	}
+
+	// pop_front() removes the first node from the list
+	// arguments: none
+	// returns: void
+	void pop_front() {
+
+		// this can also be done through delete_pos(0), but this method is implemented for class completeness
+
+		if (!head) return; // empty list
+
+		Node* temp = head; // save the head node for deletion
+		head = head->next; // move head to the next node
+
+		if (head) // if the new head exists (original list had more than one node)
+			head->prev = nullptr; // set the new head's previous to nullptr
+		else // if the list only had one node
+			tail = nullptr; // list is now empty
+
+		delete temp; // delete the old head node
+
+	}
+
+	// pop_back() removes the last node from the list
+	// arguments: none
+	// returns: void
+	void pop_back() {
+
+		if (!tail) return; // empty list
+
+		Node* temp = tail; // save the tail node for deletion
+		tail = tail->prev; // move tail to the previous node
+
+		if (tail) // if the new tail exists (original list had more than one node)
+			tail->next = nullptr; // set the new tail's next to nullptr
+		else // if the list only had one node
+			head = nullptr; // list is now empty
+
+		delete temp; // delete the old tail node
 
 	}
 
